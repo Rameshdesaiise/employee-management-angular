@@ -56,7 +56,7 @@ module.exports = function (config) {
       }
     },
     browsers: ['ChromeHeadless'],
-    singleRun: false,
+    singleRun: true,
     autoWatchBatchDelay: 50000
   });
 };
