@@ -1,22 +1,27 @@
 pipeline {
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
-    }
-
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
+   agent any
+      environment {
+         PATH='/usr/local/bin:/usr/bin:/bin'
       }
-    }
+   stages {
+      stage('NPM Setup') {
+      steps {
+         sh 'npm install'
+      }
+   }
 
-    stage('Build') {
-      steps { sh 'npm run-script build' }
+   stage('Stage Web Build') {
+      steps {
+        sh 'npm run build --prod'
     }
   }
+  
+  stage('Stage unit test') {
+      steps {
+        sh 'ng test --code-coverage'
+    }
+  }
+
+
+ }
 }
