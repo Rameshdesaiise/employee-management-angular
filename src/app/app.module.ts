@@ -40,5 +40,6 @@ import { AddEmployeeTypeComponent } from './employee-types/add-employee-type/add
    ],
    providers: [],
    bootstrap: [EmployeeAppComponent]
+  //booting
 })
 export class AppModule { }
